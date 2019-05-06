@@ -1,4 +1,4 @@
-(function (name, definition) {
+/*(function (name, definition) {
 	//	AMD
 	if (typeof define === 'function') {
 		define(definition);
@@ -15,7 +15,25 @@
 		};
 		global[name] = theModule;
 	}
-})('EgoChat', function () {
+})('EgoChat', function () {*/
+(function (global, factory) {
+	if (typeof module === "object" && typeof module.exports === "object") {
+		module.exports = global.document ?
+			factory(global, true) :
+			function (w) {
+				if (!w.document) {
+					throw new Error("EgoChat requires a window with a document");
+				}
+				return factory(w);
+			};
+	} else {
+		factory(global);
+	}
+
+// Pass this if window is not defined yet
+})(typeof window !== "undefined" ? window : this, function (window, noGlobal) {
+
+	function EgoChat() {}
 
 	/**
 	 *
@@ -29,7 +47,7 @@
 	 * @returns {EgoChat}
 	 * @constructor
 	 */
-	function EgoChat(options) {
+	EgoChat.Chat = function(options) {
 
 		var self = this;
 
@@ -443,6 +461,14 @@
 	EgoChat.Format = {
 		JSON: 'json'
 	};
+
+	//return EgoChat;
+
+	if (!noGlobal) {
+		//window.EgoChat = EgoChat;
+	}
+
+	window.EgoChat = EgoChat;
 
 	return EgoChat;
 
