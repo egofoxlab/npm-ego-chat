@@ -52,6 +52,10 @@ function eventSend(e) {
 
 It's simple usage of chat.
 
+## Requirements
+
+* [@egofoxlab/util](https://www.npmjs.com/package/@egofoxlab/util)
+
 ## Documentation
 
 > serverUrl: string|null;
